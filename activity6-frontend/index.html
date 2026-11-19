@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Service Requests</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1>Library Service Requests</h1>
+        <p class="subtitle">Track requests for book searches, borrowing support, and library account help.</p>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#home-section">Home</a></li>
+          <li><a href="#manage-section">Manage Records</a></li>
+          <li><a href="#about-section">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="container">
+    <section id="home-section" class="panel" aria-labelledby="home-heading">
+      <h2 id="home-heading">Home</h2>
+      <p>
+        Use the Library Service Requests portal to log, review, update, and track library assistance requests
+        across categories such as Book search, Borrowing, and Account help.
+      </p>
+      <p>
+        <a class="btn btn-primary" href="#manage-section">Go to Manage Records</a>
+      </p>
+    </section>
+
+    <section id="manage-section" class="panel" aria-labelledby="manage-heading">
+      <h2 id="manage-heading">Manage Records</h2>
+
+      <div id="feedback-banner" class="feedback" role="status" aria-live="polite" hidden></div>
+
+      <div class="record-grid">
+        <div class="card">
+          <h3 id="form-heading">Add New Request</h3>
+          <form id="request-form" novalidate>
+            <div class="field">
+              <label for="record-id">Record ID</label>
+              <input id="record-id" name="id" type="text" readonly placeholder="Auto-generated">
+            </div>
+
+            <div class="field">
+              <label for="record-title">Title (3–80 characters)</label>
+              <input id="record-title" name="title" type="text" required minlength="3" maxlength="80" placeholder="e.g., Extend overdue textbook loan">
+            </div>
+
+            <div class="field">
+              <label for="record-category">Category (2–40 characters)</label>
+              <input id="record-category" name="category" type="text" list="category-suggestions" required minlength="2" maxlength="40" placeholder="e.g., Borrowing">
+              <datalist id="category-suggestions">
+                <option value="Book search"></option>
+                <option value="Borrowing"></option>
+                <option value="Account help"></option>
+              </datalist>
+            </div>
+
+            <div class="field">
+              <label for="record-description">Description (5–300 characters)</label>
+              <textarea id="record-description" name="description" rows="4" required minlength="5" maxlength="300" placeholder="Describe what assistance you need from the library..."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="record-status">Status</label>
+              <select id="record-status" name="status" required>
+                <option value="Pending">Pending</option>
+                <option value="In progress">In progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="submit-btn" class="btn btn-primary">Save Request</button>
+              <button type="button" id="cancel-edit-btn" class="btn btn-secondary" hidden>Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Request Details</h3>
+          <div id="detail-panel" class="detail-box">
+            <p class="muted">Select <strong>View</strong> on any request to inspect its full details.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card list-card">
+        <div class="toolbar">
+          <div class="field compact-field">
+            <label for="search-input">Search by Title</label>
+            <input id="search-input" type="search" placeholder="Type title keywords...">
+          </div>
+
+          <div class="field compact-field">
+            <label for="status-filter">Filter by Status</label>
+            <select id="status-filter">
+              <option value="All">All Statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="In progress">In progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="count-wrap">
+            <p id="result-count" class="result-count" aria-live="polite">Showing 0 of 0 records</p>
+          </div>
+        </div>
+
+        <div id="delete-confirm" class="confirm-box" role="alertdialog" aria-labelledby="delete-confirm-msg" hidden>
+          <p id="delete-confirm-msg"></p>
+          <div class="form-actions">
+            <button type="button" id="confirm-delete-btn" class="btn btn-danger">Confirm Delete</button>
+            <button type="button" id="cancel-delete-btn" class="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="records-tbody"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state" hidden></p>
+      </div>
+    </section>
+
+    <section id="about-section" class="panel" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <p><strong>Project Name:</strong> Library Service Requests</p>
+      <p><strong>Student Number:</strong> 202407715</p>
+      <p>
+        <strong>Data Notice:</strong> This version uses browser demonstration data stored locally in your
+        browser via <code>localStorage</code>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>ICT251 Activity 6 — Library Service Requests (Browser Demo)</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
